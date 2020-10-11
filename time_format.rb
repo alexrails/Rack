@@ -22,9 +22,11 @@ class TimeFormat
     invalid.empty?
   end
 
-  def call
+  def result
     Time.now.strftime(@valid.join('-'))
   end
+
+  private
 
   def check_format
     @formats.each do |format|
