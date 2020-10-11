@@ -18,15 +18,13 @@ class TimeFormat
     check_format
   end
 
-  def call
-    Time.now.strftime(@valid.join('-'))
-  end
-
   def valid?
     invalid.empty?
   end
 
-  private
+  def call
+    Time.now.strftime(@valid.join('-'))
+  end
 
   def check_format
     @formats.each do |format|
