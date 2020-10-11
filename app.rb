@@ -21,7 +21,7 @@ class App
     time_format = TimeFormat.new(@params)
 
     if time_format.valid?
-      http_response(200, time_format.call)
+      http_response(200, time_format.result)
     else
       http_response(400, "Unknown time format [#{time_format.invalid.join(', ')}]")
     end
@@ -34,5 +34,6 @@ class App
   def http_response(status, body)
     [status, header, [body]]
   end
+
 end
 
