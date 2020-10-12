@@ -1,9 +1,11 @@
+require 'rack'
+require 'rack/response'
+
 class App
 
   def call(env)
     @request = Rack::Request.new(env)
     @params = @request.params
-
     if request_valid?
       time_response
     else
@@ -23,16 +25,16 @@ class App
     if time_format.valid?
       http_response(200, time_format.result)
     else
-      http_response(400, "Unknown time format [#{time_format.invalid.join(', ')}]")
+      http_response(400, "Unknown time format [#{time_format.invalid.join('-')}]")
     end
   end
 
-  def header
+  def headers
     { 'Content-Type' => 'text/plain' }
   end
 
   def http_response(status, body)
-    [status, header, [body]]
+    Rack::Response.new(body, status, headers).finish
   end
 
 end

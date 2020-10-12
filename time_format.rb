@@ -15,10 +15,10 @@ class TimeFormat
     @valid = []
     @invalid = []
     @formats = params['format'].split(',')
-    check_format
   end
 
   def valid?
+    check_format
     invalid.empty?
   end
 
@@ -37,4 +37,5 @@ class TimeFormat
       end
     end
   end
+
 end
