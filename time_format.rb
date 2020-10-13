@@ -18,7 +18,6 @@ class TimeFormat
   end
 
   def valid?
-    check_format
     invalid.empty?
   end
 
@@ -26,9 +25,7 @@ class TimeFormat
     Time.now.strftime(@valid.join('-'))
   end
 
-  private
-
-  def check_format
+  def call
     @formats.each do |format|
       if VALID_FORMATS[format]
         @valid << VALID_FORMATS[format]

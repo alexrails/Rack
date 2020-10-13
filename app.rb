@@ -21,6 +21,7 @@ class App
 
   def time_response
     time_format = TimeFormat.new(@params)
+    time_format.call
 
     if time_format.valid?
       http_response(200, time_format.result)
